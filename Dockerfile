@@ -30,6 +30,10 @@ COPY assets/config/ /app/setup/config/
 COPY assets/init /app/init
 RUN chmod 755 /app/init
 
+RUN echo "gem 'puma'" >> /home/git/gitlab/Gemfile
+RUN bundle install --no-deployment && \
+    bundle install --deployment --without development test postgres
+
 EXPOSE 22
 EXPOSE 80
 EXPOSE 443
@@ -38,4 +42,4 @@ VOLUME ["/home/git/data"]
 VOLUME ["/var/log/gitlab"]
 
 ENTRYPOINT ["/app/init"]
-CMD ["app:start"]
+CMD ["/bin/bash","-c", "cd /home/git/gitlab && exec bundle exec puma -C /home/git/gitlab/config/puma.rb"]
