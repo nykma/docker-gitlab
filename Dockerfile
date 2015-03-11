@@ -24,15 +24,12 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv E1DF1F24 \
 
 COPY assets/setup/ /app/setup/
 RUN chmod 755 /app/setup/install
+RUN echo "gem 'puma'" >> /home/git/gitlab/Gemfile
 RUN /app/setup/install
 
 COPY assets/config/ /app/setup/config/
 COPY assets/init /app/init
 RUN chmod 755 /app/init
-
-RUN echo "gem 'puma'" >> /home/git/gitlab/Gemfile
-RUN bundle install --no-deployment && \
-    bundle install --deployment --without development test postgres
 
 EXPOSE 22
 EXPOSE 80
