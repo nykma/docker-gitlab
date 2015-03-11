@@ -3,8 +3,8 @@ app_path = File.expand_path(File.dirname(File.dirname(__FILE__)))
 rails_env = ENV['RAILS_ENV'] ||  'production'
 environment rails_env
 
-threads 4, 32
-workers 2
+threads 2, 8
+workers 1
 
 daemonize true
 bind                 "unix://#{app_path}/tmp/puma/sock"

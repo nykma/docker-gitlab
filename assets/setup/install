@@ -66,6 +66,11 @@ sudo -u git -H cp config/unicorn.rb.example config/unicorn.rb
 sudo -u git -H cp config/initializers/rack_attack.rb.example config/initializers/rack_attack.rb
 sudo -u git -H cp config/initializers/smtp_settings.rb.sample config/initializers/smtp_settings.rb
 
+# add gem 'puma'
+
+sudo -u git -H echo "gem 'puma'" >> Gemfile
+
+
 # symlink log -> ${GITLAB_LOG_DIR}/gitlab
 rm -rf log
 ln -sf ${GITLAB_LOG_DIR}/gitlab log

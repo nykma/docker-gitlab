@@ -24,8 +24,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv E1DF1F24 \
 
 COPY assets/setup/ /app/setup/
 RUN chmod 755 /app/setup/install
-RUN echo "gem 'puma'" >> /home/git/gitlab/Gemfile
-RUN /app/setup/install
+RUN /app/setup/install # 20150311
 
 COPY assets/config/ /app/setup/config/
 COPY assets/init /app/init
